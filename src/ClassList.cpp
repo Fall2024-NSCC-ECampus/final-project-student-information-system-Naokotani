@@ -2,6 +2,9 @@
 #include "ClassList.h"
 #include <algorithm>
 #include <cctype>
+#include <iostream>
+#include <stdexcept>
+#include <string>
 #include "Print.h"
 
 using namespace std;
@@ -60,11 +63,51 @@ Student ClassList::addStudent() {
 Student ClassList::updateStudentByLastName(string lastName) {
   int studentIndex = findStudentByLastName(lastName);
   Student student = this->students[studentIndex];
-  this->deleteStudentByLastName(lastName);
   Student::printStudent(student);
   Print::breakLine();
-  cout << "Please enter the new student data";
-  Student newStudent = Student::inputStudent(this->mark_template);
+
+  int valid = 0;
+  int input = 0;
+  while (!valid) {
+    cout << "1) update name.\n";
+    cout << "2) update marks.\n";
+    cout << "3) update name and marks.\n";
+    cout << "Choose an option: ";
+    try {
+      input = Print::getInt();
+      valid = 1;
+    } catch (invalid_argument &e) {
+      cout << "Invalid input, please enter 1-3\n";
+    }
+  }
+  Student newStudent;
+  
+  switch (input) {
+  case 1:
+    newStudent = Student::newName(newStudent);
+    newStudent.marks = student.marks;
+    break;
+  case 2:
+    newStudent.first_name = student.first_name;
+    newStudent.last_name = student.last_name;
+    newStudent.marks = Mark::newMarks(student.marks);
+    break;
+  case 3:
+    newStudent = Student::inputStudent(this->mark_template);
+    break;
+  default:
+    valid = 0;
+  }
+
+  if (valid) {
+    this->deleteStudentByLastName(lastName);
+    this->students.push_back(newStudent);
+  } else {
+    cout << "Error updating student\n";
+  }
+
+  
+
   return newStudent;
 }
 

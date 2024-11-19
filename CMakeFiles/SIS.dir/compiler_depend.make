@@ -195,6 +195,8 @@ CMakeFiles/SIS.dir/src/ClassList.cpp.o: src/ClassList.cpp \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h
 
 CMakeFiles/SIS.dir/src/Mark.cpp.o: src/Mark.cpp \
+  src/ClassList.h \
+  src/Print.h \
   src/Student.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \

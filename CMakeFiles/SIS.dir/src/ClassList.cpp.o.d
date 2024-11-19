@@ -108,7 +108,6 @@ CMakeFiles/SIS.dir/src/ClassList.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_heap.h \
  /usr/include/c++/14.2.1/bits/uniform_int_dist.h \
  /usr/include/c++/14.2.1/bits/stl_tempbuf.h \
- /home/naokotani/code/school/final-project-student-information-system-Naokotani/src/Print.h \
  /usr/include/c++/14.2.1/iostream /usr/include/c++/14.2.1/ostream \
  /usr/include/c++/14.2.1/ios /usr/include/c++/14.2.1/exception \
  /usr/include/c++/14.2.1/bits/exception_ptr.h \
@@ -144,4 +143,5 @@ CMakeFiles/SIS.dir/src/ClassList.cpp.o: \
  /usr/include/c++/14.2.1/bits/locale_facets.tcc \
  /usr/include/c++/14.2.1/bits/basic_ios.tcc \
  /usr/include/c++/14.2.1/bits/ostream.tcc /usr/include/c++/14.2.1/istream \
- /usr/include/c++/14.2.1/bits/istream.tcc
+ /usr/include/c++/14.2.1/bits/istream.tcc \
+ /home/naokotani/code/school/final-project-student-information-system-Naokotani/src/Print.h

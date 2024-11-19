@@ -24,6 +24,7 @@ struct Mark {
   double weight;
   static std::vector<Mark> newMarkTemplate();
   static std::vector<Mark> getMarkTemplate(int templateLength);
+  static std::vector<Mark> newMarks(std::vector<Mark> marks);
 
   Mark() {
     this->name = "";
@@ -55,7 +56,8 @@ struct Student {
     this->last_name = last_name;
     this->marks = marks;
   }
-  
+
+  static Student newName(Student student);
   static void printStudent(Student student);
   static Student inputStudent(std::vector<Mark> markTemplate);
   static void printAllGrades(std::vector<Student> students);

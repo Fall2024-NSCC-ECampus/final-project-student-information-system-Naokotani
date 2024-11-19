@@ -1,4 +1,5 @@
 #include "Student.h"
+#include "Print.h"
 #include <stdexcept>
 #include <vector>
 #include <iostream>
@@ -20,6 +21,47 @@ int getValidInput() {
     }
   } while (!validInput);
   return input;
+}
+
+vector<Mark> Mark::newMarks(vector<Mark> marks) {
+  cout << "Which mark to update?\n";
+
+  for (size_t i = 0; i < marks.size(); i++) {
+    cout << i + 1 << ") " << marks[i].mark << endl;
+  }
+
+  int valid = 0;
+  size_t input;
+  while (!valid) {
+    try {
+      input = Print::getInt();
+      valid = 1;
+    } catch (invalid_argument &e) {
+      cout << "Input a nubmer corresponding to a mark.\n";
+    }
+
+    if (input <= marks.size()) {
+      int validMark = 0;
+      double mark;
+      string s;
+      while (!validMark) {
+        cout << "Enter a mark";
+        cin >> s;
+        try {
+          mark = stod(s);
+          validMark = 1;
+        } catch (invalid_argument &e) {
+          cout << "Invalid mark. Enter number between 0 and 100";
+        }
+        marks[input - 1].mark = mark;
+      }
+      
+    } else {
+      valid = 0;
+      cout << "Number should correspond to a mark.\n";
+    }
+  }
+  return marks;
 }
 
 vector<Mark> Mark::getMarkTemplate(int templateLength) {

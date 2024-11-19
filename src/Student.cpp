@@ -43,6 +43,14 @@ Student Student::inputStudent(vector<Mark> markTemplate) {
   return student;
 }
 
+Student Student::newName(Student student) {
+  cout << "First name: ";
+  cin >> student.first_name;
+  cout << "Last name: ";
+  cin >> student.last_name;
+  return student;
+}
+
 MarkResult Student::calculate_grade() {
   const vector<double> weighted_marks = applyWeight(this->marks);
   const double sum = sumMark(weighted_marks);
