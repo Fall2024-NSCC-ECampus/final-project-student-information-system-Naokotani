@@ -1,0 +1,3 @@
+/home/naokotani/code/school/final-project-student-information-system-Naokotani/CMakeFiles/SIS.dir
+/home/naokotani/code/school/final-project-student-information-system-Naokotani/CMakeFiles/edit_cache.dir
+/home/naokotani/code/school/final-project-student-information-system-Naokotani/CMakeFiles/rebuild_cache.dir

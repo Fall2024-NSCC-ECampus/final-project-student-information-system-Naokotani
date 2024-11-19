@@ -1,0 +1,22 @@
+Gym
+***********
+
+Bob
+Ackerman
+Midterm 1: 25
+66
+Midterm 2: 25
+66
+Final: 50
+66
+
+Chris
+Hughes
+Midterm 1: 25
+55
+Midterm 2: 25
+55
+Final: 50
+55
+
+

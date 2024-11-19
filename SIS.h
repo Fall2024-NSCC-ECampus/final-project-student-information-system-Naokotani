@@ -1,0 +1,2 @@
+#define SIS_VERSION_MAJOR 1
+#define SIS_VERSION_MINOR 0

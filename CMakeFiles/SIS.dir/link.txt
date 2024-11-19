@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -pedantic -lncurses  -Wall -Wextra -pedantic -lncurses -g -Wl,--dependency-file,CMakeFiles/SIS.dir/link.d CMakeFiles/SIS.dir/src/ClassList.cpp.o CMakeFiles/SIS.dir/src/Mark.cpp.o CMakeFiles/SIS.dir/src/Student.cpp.o CMakeFiles/SIS.dir/src/main.cpp.o -o SIS
