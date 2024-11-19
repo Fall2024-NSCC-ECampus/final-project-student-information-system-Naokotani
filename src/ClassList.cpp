@@ -48,14 +48,14 @@ void ClassList::printStudentsAlphabetic() {
   printStudentVector(s);
 }
 
-ClassList ClassList::input_class() {
+ClassList ClassList::inputClass() {
   ClassList classList;
-  classList.class_name = getClassname();
+  classList.className = getClassname();
   return classList;
 }
 
 Student ClassList::addStudent() {
-  Student student = Student::inputStudent(this->mark_template);
+  Student student = Student::inputStudent(this->markTemplate);
   this->students.push_back(student);
   return student;
 }
@@ -80,8 +80,8 @@ Student ClassList::updateStudentByLastName(string lastName) {
       cout << "Invalid input, please enter 1-3\n";
     }
   }
+
   Student newStudent;
-  
   switch (input) {
   case 1:
     newStudent = Student::newName(newStudent);
@@ -93,7 +93,7 @@ Student ClassList::updateStudentByLastName(string lastName) {
     newStudent.marks = Mark::newMarks(student.marks);
     break;
   case 3:
-    newStudent = Student::inputStudent(this->mark_template);
+    newStudent = Student::inputStudent(this->markTemplate);
     break;
   default:
     valid = 0;
@@ -106,8 +106,6 @@ Student ClassList::updateStudentByLastName(string lastName) {
     cout << "Error updating student\n";
   }
 
-  
-
   return newStudent;
 }
 
@@ -115,7 +113,7 @@ void ClassList::printStudentByLastName(string lastName) {
   Student student = this->students[findStudentByLastName(lastName)];
   cout << "First Name: " << student.first_name << endl;
   cout << "Last Name: " << student.last_name << endl;
-  
+
   for (Mark m : student.marks) {
     cout << m.name << ": " << m.mark;
   }
@@ -123,7 +121,7 @@ void ClassList::printStudentByLastName(string lastName) {
 
 int ClassList::findStudentByLastName(string lastName) {
   vector<deleteStudent> foundStudents = {};
-  
+
   for(size_t i = 0; i < this->students.size(); i++) {
     if (lastName == this->students[i].last_name) {
       foundStudents.push_back(deleteStudent{i, this->students[i]});
@@ -151,7 +149,7 @@ void ClassList::nameClass() {
   string name;
   cout << "Enter new class name: ";
   cin >> name;
-  this->class_name = name;
+  this->className = name;
 }
 
 int chooseStudent(vector<deleteStudent> students) {
@@ -164,7 +162,6 @@ int chooseStudent(vector<deleteStudent> students) {
 
   int validArgument = 0;
   int index;
-  
   while (validArgument) {
     try {
       index = Print::getInt();
@@ -190,7 +187,6 @@ vector<Mark> getMarkVector(int mark_quantity) {
       string s;
       double weight;
       string name;
-
       do {
         cout << "Enter the first assignemnt name: ";
         cin >> name;

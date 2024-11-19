@@ -10,7 +10,7 @@ int getValidInput() {
   int validInput = 0;
   string s;
   int input;
-  
+
   do {
     cin >> s;
     try {
@@ -55,7 +55,6 @@ vector<Mark> Mark::newMarks(vector<Mark> marks) {
         }
         marks[input - 1].mark = mark;
       }
-      
     } else {
       valid = 0;
       cout << "Number should correspond to a mark.\n";
@@ -97,5 +96,3 @@ vector<Mark> Mark::newMarkTemplate() {
   templateLength = getValidInput();
   return Mark::getMarkTemplate(templateLength);
 }
-
-

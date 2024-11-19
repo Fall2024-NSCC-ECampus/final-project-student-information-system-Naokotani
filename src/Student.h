@@ -63,7 +63,7 @@ struct Student {
   static void printAllGrades(std::vector<Student> students);
   MarkResult calculate_grade();
   static std::string lowerCase(std::string s);
-  
+
   bool operator<(const Student &other) const {
     if (lowerCase(last_name) == lowerCase(other.last_name)) {
       if (lowerCase(first_name) < lowerCase(other.first_name)) {

@@ -15,20 +15,20 @@ class Save {
   static std::string lineBreak() { return "-----------\n"; }
   static void classList(ClassList classList) {
 
-    if (classList.class_name == "") {
+    if(classList.className == "") {
       std::cout << "Class not named, please name (option 11)\n";
       return;
     }
-      
-    std:: string filename = "data/" + classList.class_name + ".txt";
+
+    std:: string filename = "data/" + classList.className + ".txt";
     std::cout << "Saving files to: " << filename << std::endl;
     std::ofstream fout(filename);
 
-    if (!fout.is_open()) {
+    if(!fout.is_open()) {
       throw(std::runtime_error("Could not open save file"));
     }
 
-    fout << classList.class_name;
+    fout << classList.className;
     fout << Save::breakLine();
     fout << std::endl;
     for (Student s : classList.students) {
@@ -53,12 +53,12 @@ class Load {
     auto end = std::find_if_not(str.rbegin(), str.rend(), ::isspace).base();
     return (start < end) ? std::string(start, end) : "";
   }
-  
+
   static Mark readMarkLine(std::string markLine) {
     Mark mark;
     size_t colonPos = markLine.find(':');
-    
-    if (colonPos != std::string::npos) {
+
+    if(colonPos != std::string::npos) {
         std::string part1 = markLine.substr(0, colonPos);
         std::string part2 = markLine.substr(colonPos + 1);
         mark.name = trim(part1);
@@ -66,7 +66,7 @@ class Load {
     } else {
       throw(std::runtime_error("Coult not parse mark string, no colon."));
     }
-    
+
     return mark;
   }
 public:
@@ -79,10 +79,10 @@ public:
     std::ifstream fin(filename);
     std::string currLine;
     fin >> currLine;
-    classList.class_name = currLine;
+    classList.className = currLine;
     fin >> currLine >> currLine;
     std::vector<Student> students;
-    
+
     while (!currLine.empty()) {
       Student student;
       student.first_name = currLine;
@@ -95,7 +95,7 @@ public:
       while (!currLine.empty()) {
         Mark mark = readMarkLine(currLine);
         fin >> currLine;
-        classList.mark_template.push_back(Mark{
+        classList.markTemplate.push_back(Mark{
             mark.name,
             0, mark.weight});
         mark.mark = stod(currLine);
@@ -105,7 +105,7 @@ public:
       }
       student.marks = marks;
       std::getline(fin, currLine);
-  
+
       students.push_back(student);
     }
     classList.students = students;

@@ -31,7 +31,7 @@ struct Print {
     cout << "13) Exit.\n";
     breakLine();
   }
-  
+
   static void breakLine() {
     cout << "\n**************************************\n";
   }
@@ -43,10 +43,10 @@ struct Print {
 
   static void marks(vector<Mark> marks) {
     for (const Mark& m : marks) {
-      cout << m.name << ": " << m.mark << endl; 
+      cout << m.name << ": " << m.mark << endl;
     }
   }
-  
+
   static void markResult(MarkResult markResult) {
     cout << markResult.mark << ": " << markResult.grade << endl;
   }

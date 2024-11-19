@@ -22,63 +22,64 @@ class MainLoop {
   //FIXME This is breaking on improper inuts. Doesn't loop around
   int selectTask(int task) {
     switch (task) {
-      // List all students
     case 1:
+      // List all students
       this->classList.printStudents();
       break;
-      // Sort alphabetically
     case 2:
-      this->classList.students =
-          ClassList::sortStudentsByName(this->classList.students);
+      // Sort alphabetically
+      this->classList.
+        ClassList::sortStudentsByName(this->classList.students);
       break;
-      // Add new student
+
     case 3:
+      // Add new student      
       this->classList.students.push_back(
-      Student::inputStudent(this->classList.mark_template));
+      Student::inputStudent(this->classList.markTemplate));
       break;
-      // Calculate the letter grade of all students
     case 4:
+      // Calculate the letter grade of all students      
       Student::printAllGrades(this->classList.students);
       break;
-      // Change the information of a student.
     case 5:
+      // Change the information of a student.      
       classList.updateStudentByLastName(getName());
       break;
-      // Print the data of a specific student
     case 6:
+      // Print the data of a specific student
       classList.printStudentByLastName(getName());
       break;
-      // Rmove a student
     case 7:
+      // Remove a student      
       classList.deleteStudentByLastName(getName());
       break;
-      // Delete ALL students
     case 8:
+      // Delete ALL students      
       classList.deleteStudents();
       break;
-      // Change the grading sceheme
     case 9:
-      this->classList.mark_template =
-      Mark::getMarkTemplate(this->classList.mark_template.size());
+      // Change the grading sceheme      
+      this->classList.markTemplate =
+      Mark::getMarkTemplate(this->classList.markTemplate.size());
       break;
-      // Save
     case 10:
+      // Save      
       try {
         Save::classList(this->classList);
       } catch (runtime_error &e) {
         cout << e.what();
       }
       break;
-      //Name class
     case 11:
+      //Name class      
       classList.nameClass();
       break;
-      // Load class
     case 12:
+      // Load class      
       this-> classList=Load::classList();
       break;
-      // Exit
     case 13:
+      // Exit      
       return 1;
     default:
       cout << "Didn't recongine input. select a number between 1 and 10";
@@ -90,8 +91,8 @@ class MainLoop {
     int input;
     int valid = 0;
     while (!valid) {
-    cout << "Enter a number to select an operation.\n";
-    cout << "> ";
+      cout << "Enter a number to select an operation.\n";
+      cout << "> ";
       try {
         input = Print::getInt();
         valid = 1;
@@ -104,8 +105,8 @@ class MainLoop {
 
 public:
   int mainLoop() {
-  int exit = 0;
-  int input = 0;
+    int exit = 0;
+    int input = 0;
     while (!exit) {
       Print::mainMenu();
       input = getUserInput();
@@ -113,7 +114,6 @@ public:
     }
     return 0;
   }
-
 };
 #endif
 

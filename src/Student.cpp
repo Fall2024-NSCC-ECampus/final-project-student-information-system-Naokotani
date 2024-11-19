@@ -25,7 +25,7 @@ Student Student::inputStudent(vector<Mark> markTemplate) {
   cin >> student.first_name;
   cout << "Last name: ";
   cin >> student.last_name;
-    
+
   for (size_t i = 0; i < markTemplate.size(); i++) {
     string s;
     cout << markTemplate[i].name << ": ";
@@ -37,7 +37,7 @@ Student Student::inputStudent(vector<Mark> markTemplate) {
     } catch (invalid_argument &e) {
       throw("Invalid mark input. must be a number");
     }
-    
+
     student.marks.push_back(Mark{markTemplate[i].name, mark, markTemplate[i].weight});
   }
   return student;
@@ -72,7 +72,7 @@ void Student::printAllGrades(std::vector<Student> students) {
 
 string Student::lowerCase(std::string s) {
   string lowerString = s;
-  for (char& c : lowerString) { 
+  for (char& c : lowerString) {
     c = tolower(c);
   }
   return lowerString;
@@ -93,7 +93,7 @@ vector<double> applyWeight(const vector<Mark> marks) {
   for (size_t i = 0; i < marks.size(); i++) {
     weighted_marks.push_back(marks[i].mark/100*marks[i].weight);
   }
-  
+
   return weighted_marks;
 }
 
