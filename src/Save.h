@@ -46,10 +46,10 @@ class Save {
   }
 
   static void orgClassList(ClassList classList) {
-		if(classList.className == "") {
+    if(classList.className == "") {
       std::cout << "Class not named, please name (option 11)\n";
       return;
-		}
+    }
 
     std:: string filename = "data/" + classList.className + ".org";
     std::cout << "Saving org file to: " << filename << std::endl;
@@ -66,15 +66,15 @@ class Save {
            << std::endl;
       fout << "|------------+------+--------| " << std::endl;
       fout << "| assignemnt | mark | weight | " << std::endl;
-			fout << "|------------+------+--------| " << std::endl;
+      fout << "|------------+------+--------| " << std::endl;
       for (Mark mark : student.marks) {
         fout << "| " << mark.name << "| " << mark.mark << "| " << mark.weight << " |" << std::endl;
       }
-			fout << "|------------+------+--------| " << std::endl;
-			fout << std::endl;
+      fout << "|------------+------+--------| " << std::endl;
+      fout << std::endl;
     }
     fout.close();
-		std::cout << "Org file saved succesfully.\n";
+    std::cout << "Org file saved succesfully.\n";
   }
 };
 
