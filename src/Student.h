@@ -40,20 +40,20 @@ struct Mark {
 };
 
 struct Student {
-  std::string first_name;
-  std::string last_name;
+  std::string firstName;
+  std::string lastName;
   std::vector<struct Mark> marks;
 
   Student() {
-    this->first_name = "";
-    this->last_name = "";
+    this->firstName = "";
+    this->lastName = "";
     this->marks = {};
   }
 
-  Student(std::string first_name, std::string last_name,
+  Student(std::string firstName, std::string lastName,
           std::vector<Mark> marks) {
-    this->first_name = first_name;
-    this->last_name = last_name;
+    this->firstName = firstName;
+    this->lastName = lastName;
     this->marks = marks;
   }
 
@@ -65,12 +65,12 @@ struct Student {
   static std::string lowerCase(std::string s);
 
   bool operator<(const Student &other) const {
-    if (lowerCase(last_name) == lowerCase(other.last_name)) {
-      if (lowerCase(first_name) < lowerCase(other.first_name)) {
+    if (lowerCase(lastName) == lowerCase(other.lastName)) {
+      if (lowerCase(firstName) < lowerCase(other.firstName)) {
         return true;
       }
     }
-    return lowerCase(last_name) < lowerCase(other.last_name);
+    return lowerCase(lastName) < lowerCase(other.lastName);
   }
 };
 #endif

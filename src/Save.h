@@ -10,15 +10,15 @@
 #ifndef SAVE_H
 #define SAVE_H
 class Save {
+
   public:
   static std::string breakLine() { return "\n***********\n"; }
   static std::string lineBreak() { return "-----------\n"; }
   static void classList(ClassList classList) {
-
-    if(classList.className == "") {
+		if(classList.className == "") {
       std::cout << "Class not named, please name (option 11)\n";
       return;
-    }
+		}
 
     std:: string filename = "data/" + classList.className + ".txt";
     std::cout << "Saving files to: " << filename << std::endl;
@@ -32,8 +32,8 @@ class Save {
     fout << Save::breakLine();
     fout << std::endl;
     for (Student s : classList.students) {
-      fout << s.first_name << std::endl;
-      fout << s.last_name << std::endl;
+      fout << s.firstName << std::endl;
+      fout << s.lastName << std::endl;
       for (Mark m : s.marks) {
         fout << m.name << ": " << m.weight << std::endl;
         fout << m.mark << std::endl;
@@ -43,6 +43,38 @@ class Save {
     fout << "\n";
     fout.close();
     std::cout << "File saved.\n";
+  }
+
+  static void orgClassList(ClassList classList) {
+		if(classList.className == "") {
+      std::cout << "Class not named, please name (option 11)\n";
+      return;
+		}
+
+    std:: string filename = "data/" + classList.className + ".org";
+    std::cout << "Saving org file to: " << filename << std::endl;
+    std::ofstream fout(filename);
+
+    if(!fout.is_open()) {
+      throw(std::runtime_error("Could not open save file"));
+    }
+
+    fout << "* Class: " << classList.className << std::endl;
+    fout << std::endl;
+    for (Student student : classList.students) {
+      fout << "** " << student.firstName << " " << student.lastName
+           << std::endl;
+      fout << "|------------+------+--------| " << std::endl;
+      fout << "| assignemnt | mark | weight | " << std::endl;
+			fout << "|------------+------+--------| " << std::endl;
+      for (Mark mark : student.marks) {
+        fout << "| " << mark.name << "| " << mark.mark << "| " << mark.weight << " |" << std::endl;
+      }
+			fout << "|------------+------+--------| " << std::endl;
+			fout << std::endl;
+    }
+    fout.close();
+		std::cout << "Org file saved succesfully.\n";
   }
 };
 
@@ -85,9 +117,9 @@ public:
 
     while (!currLine.empty()) {
       Student student;
-      student.first_name = currLine;
+      student.firstName = currLine;
       fin >> currLine;
-      student.last_name = currLine;
+      student.lastName = currLine;
       std::vector<Mark> marks;
 
       fin.ignore();
@@ -105,7 +137,6 @@ public:
       }
       student.marks = marks;
       std::getline(fin, currLine);
-
       students.push_back(student);
     }
     classList.students = students;

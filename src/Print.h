@@ -26,9 +26,10 @@ struct Print {
     cout << "8) Delete ALL student data.\n";
     cout << "9) Change the grading scheme.\n";
     cout << "10) Save current Class.\n";
-    cout << "11) Name class.\n";
-    cout << "12) Load class.\n";
-    cout << "13) Exit.\n";
+		cout << "11) Create org file.\n";
+    cout << "12) Name class.\n";
+    cout << "13) Load class.\n";
+    cout << "14) Exit.\n";
     breakLine();
   }
 
@@ -37,8 +38,8 @@ struct Print {
   }
 
   static void names(Student s) {
-    cout << "First name: " << s.first_name << endl;
-    cout << "Last name: " << s.last_name << endl;
+    cout << "First name: " << s.firstName << endl;
+    cout << "Last name: " << s.lastName << endl;
   }
 
   static void marks(vector<Mark> marks) {

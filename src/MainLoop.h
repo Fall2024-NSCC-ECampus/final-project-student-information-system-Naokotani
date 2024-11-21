@@ -13,13 +13,12 @@ class MainLoop {
   ClassList classList;
 
   string getName() {
-      cout << "Enter the last name of the student to remove: ";
-      string name;
-      cin >> name;
-      return name;
+    cout << "Enter the last name of the student to remove: ";
+    string name;
+    cin >> name;
+    return name;
   }
 
-  //FIXME This is breaking on improper inuts. Doesn't loop around
   int selectTask(int task) {
     switch (task) {
     case 1:
@@ -31,11 +30,9 @@ class MainLoop {
       this->classList.
         ClassList::sortStudentsByName(this->classList.students);
       break;
-
     case 3:
       // Add new student      
-      this->classList.students.push_back(
-      Student::inputStudent(this->classList.markTemplate));
+      this->classList.students.push_back(Student::inputStudent(this->classList.markTemplate));
       break;
     case 4:
       // Calculate the letter grade of all students      
@@ -60,7 +57,7 @@ class MainLoop {
     case 9:
       // Change the grading sceheme      
       this->classList.markTemplate =
-      Mark::getMarkTemplate(this->classList.markTemplate.size());
+        Mark::getMarkTemplate(this->classList.markTemplate.size());
       break;
     case 10:
       // Save      
@@ -70,15 +67,23 @@ class MainLoop {
         cout << e.what();
       }
       break;
-    case 11:
+		case 11:
+      // Save      
+      try {
+        Save::orgClassList(this->classList);
+      } catch (runtime_error &e) {
+        cout << e.what();
+      }
+      break;
+    case 12:
       //Name class      
       classList.nameClass();
       break;
-    case 12:
+    case 13:
       // Load class      
       this-> classList=Load::classList();
       break;
-    case 13:
+    case 14:
       // Exit      
       return 1;
     default:

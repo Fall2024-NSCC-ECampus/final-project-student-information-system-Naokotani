@@ -22,9 +22,9 @@ char getLetterGrade(double);
 Student Student::inputStudent(vector<Mark> markTemplate) {
   Student student;
   cout << "First name: ";
-  cin >> student.first_name;
+  cin >> student.firstName;
   cout << "Last name: ";
-  cin >> student.last_name;
+  cin >> student.lastName;
 
   for (size_t i = 0; i < markTemplate.size(); i++) {
     string s;
@@ -45,9 +45,9 @@ Student Student::inputStudent(vector<Mark> markTemplate) {
 
 Student Student::newName(Student student) {
   cout << "First name: ";
-  cin >> student.first_name;
+  cin >> student.firstName;
   cout << "Last name: ";
-  cin >> student.last_name;
+  cin >> student.lastName;
   return student;
 }
 

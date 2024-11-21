@@ -88,8 +88,8 @@ Student ClassList::updateStudentByLastName(string lastName) {
     newStudent.marks = student.marks;
     break;
   case 2:
-    newStudent.first_name = student.first_name;
-    newStudent.last_name = student.last_name;
+    newStudent.firstName = student.firstName;
+    newStudent.lastName = student.lastName;
     newStudent.marks = Mark::newMarks(student.marks);
     break;
   case 3:
@@ -111,8 +111,8 @@ Student ClassList::updateStudentByLastName(string lastName) {
 
 void ClassList::printStudentByLastName(string lastName) {
   Student student = this->students[findStudentByLastName(lastName)];
-  cout << "First Name: " << student.first_name << endl;
-  cout << "Last Name: " << student.last_name << endl;
+  cout << "First Name: " << student.firstName << endl;
+  cout << "Last Name: " << student.lastName << endl;
 
   for (Mark m : student.marks) {
     cout << m.name << ": " << m.mark;
@@ -123,7 +123,7 @@ int ClassList::findStudentByLastName(string lastName) {
   vector<deleteStudent> foundStudents = {};
 
   for(size_t i = 0; i < this->students.size(); i++) {
-    if (lastName == this->students[i].last_name) {
+    if (lastName == this->students[i].lastName) {
       foundStudents.push_back(deleteStudent{i, this->students[i]});
     };
   }
@@ -157,7 +157,7 @@ int chooseStudent(vector<deleteStudent> students) {
   cout << "Which student would you like to delete?\n";
 
   for (size_t i = 0; i < students.size(); i++) {
-    cout << i << ") " << students[i].student.first_name << " " << students[i].student.last_name << endl;
+    cout << i << ") " << students[i].student.firstName << " " << students[i].student.lastName << endl;
   }
 
   int validArgument = 0;

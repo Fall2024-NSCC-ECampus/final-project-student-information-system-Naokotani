@@ -19,6 +19,7 @@ elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
 	endif()
 endif()
 
+#TODO turn testing back on
 #find_package(Catch2 3 REQUIRED)
 
 include_directories("./src")
