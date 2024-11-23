@@ -23,6 +23,7 @@ struct Mark {
   double mark;
   double weight;
   static std::vector<Mark> newMarkTemplate();
+  static std::vector<Mark> updateMarkTemplate(std::vector<Mark> markTemplate);
   static std::vector<Mark> getMarkTemplate(int templateLength);
   static std::vector<Mark> newMarks(std::vector<Mark> marks);
 

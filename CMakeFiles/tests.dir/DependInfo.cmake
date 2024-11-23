@@ -8,9 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/naokotani/code/school/final-project-student-information-system-Naokotani/src/calculate_mark.cpp" "CMakeFiles/tests.dir/src/calculate_mark.cpp.o" "gcc" "CMakeFiles/tests.dir/src/calculate_mark.cpp.o.d"
-  "/home/naokotani/code/school/final-project-student-information-system-Naokotani/src/delete_student.cpp" "CMakeFiles/tests.dir/src/delete_student.cpp.o" "gcc" "CMakeFiles/tests.dir/src/delete_student.cpp.o.d"
-  "/home/naokotani/code/school/final-project-student-information-system-Naokotani/src/print_class.cpp" "CMakeFiles/tests.dir/src/print_class.cpp.o" "gcc" "CMakeFiles/tests.dir/src/print_class.cpp.o.d"
   "/home/naokotani/code/school/final-project-student-information-system-Naokotani/test/test.cpp" "CMakeFiles/tests.dir/test/test.cpp.o" "gcc" "CMakeFiles/tests.dir/test/test.cpp.o.d"
   "" "tests" "gcc" "CMakeFiles/tests.dir/link.d"
   )

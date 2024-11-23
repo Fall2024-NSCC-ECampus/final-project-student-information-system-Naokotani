@@ -24,6 +24,7 @@ struct ClassList {
     this->students = students;
   }
 
+  static ClassList newClass();
   static ClassList inputClass();
   static std::vector<Student> sortStudentsByName(std::vector<Student> students);
   void printStudents();

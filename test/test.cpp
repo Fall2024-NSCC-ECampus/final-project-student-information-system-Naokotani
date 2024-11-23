@@ -4,29 +4,32 @@
 #include <catch2/catch_test_macros.hpp>
 #include <climits>
 
-char grade_calculation(std::vector<Mark> marks) {
+using namespace std;
+
+char gradeCalculation(vector<Mark> marks) {
   Student student{"Chris", "Hughes", marks};
-  return student.calculate_grade().grade;
+  char grade = student.calculate_grade().grade;
+  return grade;
 }
 
 TEST_CASE("Single mark grades computed", "calculate grades") {
-  std::vector<Mark> mark = std::vector<Mark>{Mark{91, 100}};
-  REQUIRE(grade_calculation(mark) == 'A');
-  mark =  std::vector<Mark>{Mark{85, 100}};
-  REQUIRE(grade_calculation(mark) == 'B');
-  mark =  std::vector<Mark>{Mark{74, 100}};
-  REQUIRE(grade_calculation(mark) == 'C');
-  mark =  std::vector<Mark>{Mark{68, 100}};
-  REQUIRE(grade_calculation(mark) == 'D');
-  mark = std::vector<Mark>{Mark{59, 100}};
-  REQUIRE(grade_calculation(mark) == 'F');
+  vector<Mark> mark = vector<Mark>{Mark{"Test 1",91, 100}};
+  REQUIRE(gradeCalculation(mark) == 'A');
+  mark =  vector<Mark>{Mark{"Test 1",85, 100}};
+  REQUIRE(gradeCalculation(mark) == 'B');
+  mark =  vector<Mark>{Mark{"Test 1", 74, 100}};
+  REQUIRE(gradeCalculation(mark) == 'C');
+  mark =  vector<Mark>{Mark{"Test 1",68, 100}};
+  REQUIRE(gradeCalculation(mark) == 'D');
+  mark = vector<Mark>{Mark{"Test 1",59, 100}};
+  REQUIRE(gradeCalculation(mark) == 'F');
 }
 
 TEST_CASE("Double mark grades computer", "calculate grades") {
-  std::vector<Mark> mark = std::vector<Mark>{Mark{75, 40}, Mark{81, 60}};
-  REQUIRE(grade_calculation(mark) == 'C');
-  mark = std::vector<Mark>{Mark{65, 40}, Mark{71, 60}};
-  REQUIRE(grade_calculation(mark) == 'D');
+  vector<Mark> mark = vector<Mark>{Mark{"test 1", 75, 40}, Mark{"Test 2", 81, 60}};
+  REQUIRE(gradeCalculation(mark) == 'C');
+  mark = vector<Mark>{Mark{"test 1", 65, 40}, Mark{"Test 2", 71, 60}};
+  REQUIRE(gradeCalculation(mark) == 'D');
 }
 
 // Expected sorting outcome.
@@ -40,49 +43,49 @@ TEST_CASE("Double mark grades computer", "calculate grades") {
 // Jack Taylor
 // Eve Williams
 // Grace Wilson
-std::vector<Student> createStudentVector() {
-      return std::vector<Student> {
-        {"John", "Doe", {{85, 0.5}, {90, 0.5}}},
-            {"Alice", "Smith", {{95, 0.6}, {88, 0.4}}},
-            {"Bob", "Brown", {{72, 0.5}, {60, 0.5}}},
-            {"Charlie", "Davis", {{100, 0.4}, {90, 0.6}}},
-            {"Eve", "Williams", {{80, 0.7}, {75, 0.3}}},
-            {"Frank", "Miller", {{65, 0.5}, {70, 0.5}}},
-            {"Grace", "Wilson", {{90, 0.6}, {80, 0.4}}},
-            {"Hannah", "Moore", {{92, 0.5}, {85, 0.5}}},
-            {"Jack", "Taylor", {{78, 0.5}, {85, 0.5}}},
-            {"Jack", "Taylor", {{78, 0.5}, {85, 0.5}}},
-            {"Zoe", "Anderson", {{100, 0.5}, {95, 0.5}}}
+vector<Student> createStudentVector() {
+      return vector<Student> {
+        {"John", "Doe", { Mark {"test1",85, 0.5}, Mark{"Test", 90, 0.5}}},
+        {"Alice", "Smith", {Mark{"Test", 95, 0.6}, Mark{"Test",88, 0.4}}},
+        {"Bob", "Brown", {Mark{"Test",72, 0.5}, Mark{"Test",60, 0.5}}},
+         {"Charlie", "Davis", {Mark{"Test",100, 0.4},Mark{"Test",90, 0.6}}},
+         {"Eve", "Williams",{Mark{"Test",80, 0.7}, Mark{"Test",75, 0.3}}},
+         {"Frank", "Miller",{Mark{"Test",65, 0.5},Mark{"Test",70, 0.5}}},
+         {"Grace", "Wilson",{Mark{"Test",90, 0.6},Mark{"Test",80, 0.4}}},
+         {"Hannah", "MooreMark",{Mark {"Test",92, 0.5},Mark{"Test",85, 0.5}}},
+         {"Jack", "TaylorMark",{Mark{"Test",78, 0.5},Mark{"Test",85, 0.5}}},
+         {"Jack", "TaylorMark",{Mark{"Test",78, 0.5},Mark{"Test",85, 0.5}}},
+         {"Zoe", "AndersonMark",{Mark{"Test",100, 0.5},Mark{"Test",95, 0.5}}}
     };
 }
 
 ClassList createClass() {
   ClassList classList;
-  classList.class_name = "Gym";
+  classList.className = "Gym";
   classList.students = createStudentVector();
   return classList;
 }
 
 TEST_CASE("Sort student names alphabetically", "sorting") {
-  std::vector<Student> students = createStudentVector();
-  std::vector<Student> sorted = sortStudentsByName(students);
+  vector<Student> students = createStudentVector();
+  vector<Student> sorted = sortStudentsByName(students);
 
-  SECTION("First name") { REQUIRE(sorted[0].last_name == "Anderson"); }
-  
+  SECTION("First name") { REQUIRE(sorted[0].lastName == "Anderson"); }
+
   SECTION("Middle names") {
-    REQUIRE(sorted[1].last_name == "Brown");
-    REQUIRE(sorted[2].last_name == "Davis");
-    REQUIRE(sorted[3].last_name == "Doe");
-    REQUIRE(sorted[4].last_name == "Miller");
-    REQUIRE(sorted[5].last_name == "Moore");
-    REQUIRE(sorted[6].last_name == "Smith");
-    REQUIRE(sorted[7].last_name == "Taylor");
-    REQUIRE(sorted[8].last_name == "Taylor");
-    REQUIRE(sorted[9].last_name == "Williams");
+    REQUIRE(sorted[1].lastName == "Brown");
+    REQUIRE(sorted[2].lastName == "Davis");
+    REQUIRE(sorted[3].lastName == "Doe");
+    REQUIRE(sorted[4].lastName == "Miller");
+    REQUIRE(sorted[5].lastName == "Moore");
+    REQUIRE(sorted[6].lastName == "Smith");
+    REQUIRE(sorted[7].lastName == "Taylor");
+    REQUIRE(sorted[8].lastName == "Taylor");
+    REQUIRE(sorted[9].lastName == "Williams");
   }
 
     SECTION("Final name") {
-      REQUIRE(sorted[10].last_name == "Wilson");    
+      REQUIRE(sorted[10].lastName == "Wilson");    
     }
 }
 
@@ -90,7 +93,7 @@ TEST_CASE("Delete a student", "delete") {
   SECTION("Delete one name") {
     ClassList classList = createClass();
     classList.deleteStudentByLastName("Moore");
-    REQUIRE(classList.students[7].last_name == "Taylor");
+    REQUIRE(classList.students[7].lastName == "Taylor");
   }
  }
 

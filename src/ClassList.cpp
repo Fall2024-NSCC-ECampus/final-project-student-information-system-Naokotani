@@ -2,6 +2,7 @@
 #include "ClassList.h"
 #include <algorithm>
 #include <cctype>
+#include <cstring>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -22,6 +23,7 @@ struct deleteStudent {
  * Local methods
  */
 
+int getInt();
 int getMarkQuantity();
 int chooseStudent(vector<deleteStudent> students);
 void printStudentVector(vector<Student> students);
@@ -145,6 +147,25 @@ void ClassList::deleteStudentByLastName(string lastName) {
   this->students.erase(this->students.begin()+ index);
 }
 
+ClassList ClassList::newClass() {
+  ClassList classList;
+  classList.nameClass();
+
+  string input;
+  while (input != "y" && input != "n") {
+    cout << "Use the default marking scheme?\n";
+    cout << "y/n\n";
+    cin >> input;
+  }
+
+  if(input == "n") {
+    cout << "How many tests and assignemnts in the class? ";
+    classList.markTemplate = Mark::getMarkTemplate(getInt());    
+  }
+
+  return classList;
+}
+
 void ClassList::nameClass() {
   string name;
   cout << "Enter new class name: ";
@@ -215,6 +236,18 @@ string getClassname() {
   cout << "Classname: ";
   cin >> s;
   return s;
+}
+
+int getInt() {
+  string s;
+  do {
+    cin >> s;
+    try {
+      return stoi(s);
+    } catch (invalid_argument &e) {
+      cout << "Please enter a whole number.";
+    }
+  } while (1);
 }
 
 void printMarkResult(MarkResult markResult) {

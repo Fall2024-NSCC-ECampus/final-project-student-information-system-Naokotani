@@ -10,6 +10,13 @@ int main() {
   MainLoop mainLoop;
   cout << "Welcome to Student Information System version " << SIS_VERSION_MAJOR
        << "." << SIS_VERSION_MAJOR << endl;
-  mainLoop.mainLoop();
+  int exit = -1;
+  while (exit == -1) {
+    exit = mainLoop.introLoop();    
+  }
+  if (!exit) {
+    mainLoop.mainLoop();    
+  }
+
   return 0;
 }

@@ -102,7 +102,27 @@ CMakeFiles/tests.dir/test/test.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_uninitialized.h \
  /usr/include/c++/14.2.1/bits/stl_vector.h \
  /usr/include/c++/14.2.1/bits/stl_bvector.h \
- /usr/include/c++/14.2.1/bits/vector.tcc /usr/include/c++/14.2.1/iostream \
+ /usr/include/c++/14.2.1/bits/vector.tcc \
+ /home/naokotani/code/school/final-project-student-information-system-Naokotani/test/../src/Student.h \
+ /home/naokotani/code/school/final-project-student-information-system-Naokotani/test/tests.h \
+ /usr/include/catch2/catch_test_macros.hpp \
+ /usr/include/catch2/internal/catch_test_macro_impl.hpp \
+ /usr/include/catch2/catch_user_config.hpp \
+ /usr/include/catch2/internal/catch_assertion_handler.hpp \
+ /usr/include/catch2/catch_assertion_info.hpp \
+ /usr/include/catch2/internal/catch_result_type.hpp \
+ /usr/include/catch2/internal/catch_source_line_info.hpp \
+ /usr/include/c++/14.2.1/cstddef \
+ /usr/include/catch2/internal/catch_stringref.hpp \
+ /usr/include/c++/14.2.1/cassert /usr/include/assert.h \
+ /usr/include/c++/14.2.1/cstring /usr/include/string.h \
+ /usr/include/strings.h /usr/include/catch2/internal/catch_decomposer.hpp \
+ /usr/include/catch2/catch_tostring.hpp \
+ /usr/include/catch2/internal/catch_compiler_capabilities.hpp \
+ /usr/include/catch2/internal/catch_platform.hpp \
+ /usr/include/catch2/internal/catch_config_wchar.hpp \
+ /usr/include/catch2/internal/catch_reusable_string_stream.hpp \
+ /usr/include/catch2/internal/catch_noncopyable.hpp \
  /usr/include/c++/14.2.1/ostream /usr/include/c++/14.2.1/ios \
  /usr/include/c++/14.2.1/exception \
  /usr/include/c++/14.2.1/bits/exception_ptr.h \
@@ -137,28 +157,7 @@ CMakeFiles/tests.dir/test/test.cpp.o: \
  /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/ctype_inline.h \
  /usr/include/c++/14.2.1/bits/locale_facets.tcc \
  /usr/include/c++/14.2.1/bits/basic_ios.tcc \
- /usr/include/c++/14.2.1/bits/ostream.tcc /usr/include/c++/14.2.1/istream \
- /usr/include/c++/14.2.1/bits/istream.tcc \
- /home/naokotani/code/school/final-project-student-information-system-Naokotani/test/../src/Student.h \
- /home/naokotani/code/school/final-project-student-information-system-Naokotani/test/tests.h \
- /usr/include/catch2/catch_test_macros.hpp \
- /usr/include/catch2/internal/catch_test_macro_impl.hpp \
- /usr/include/catch2/catch_user_config.hpp \
- /usr/include/catch2/internal/catch_assertion_handler.hpp \
- /usr/include/catch2/catch_assertion_info.hpp \
- /usr/include/catch2/internal/catch_result_type.hpp \
- /usr/include/catch2/internal/catch_source_line_info.hpp \
- /usr/include/c++/14.2.1/cstddef \
- /usr/include/catch2/internal/catch_stringref.hpp \
- /usr/include/c++/14.2.1/cassert /usr/include/assert.h \
- /usr/include/c++/14.2.1/cstring /usr/include/string.h \
- /usr/include/strings.h /usr/include/catch2/internal/catch_decomposer.hpp \
- /usr/include/catch2/catch_tostring.hpp \
- /usr/include/catch2/internal/catch_compiler_capabilities.hpp \
- /usr/include/catch2/internal/catch_platform.hpp \
- /usr/include/catch2/internal/catch_config_wchar.hpp \
- /usr/include/catch2/internal/catch_reusable_string_stream.hpp \
- /usr/include/catch2/internal/catch_noncopyable.hpp \
+ /usr/include/c++/14.2.1/bits/ostream.tcc \
  /usr/include/catch2/internal/catch_void_type.hpp \
  /usr/include/catch2/interfaces/catch_interfaces_enum_values_registry.hpp \
  /usr/include/c++/14.2.1/ctime /usr/include/c++/14.2.1/ratio \

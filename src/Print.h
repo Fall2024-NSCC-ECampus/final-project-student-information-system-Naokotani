@@ -26,10 +26,20 @@ struct Print {
     cout << "8) Delete ALL student data.\n";
     cout << "9) Change the grading scheme.\n";
     cout << "10) Save current Class.\n";
-		cout << "11) Create org file.\n";
+    cout << "11) Create org file.\n";
     cout << "12) Name class.\n";
-    cout << "13) Load class.\n";
-    cout << "14) Exit.\n";
+    cout << "13) create a new class.\n";
+    cout << "14) Load class.\n";
+    cout << "15) Exit.\n";
+    breakLine();
+  }
+  
+  static void introMenu() {
+    breakLine();
+    cout << "Please enter one of the following options:\n";
+    cout << "1) create a new class.\n";
+    cout << "2) Load class.\n";
+    cout << "3) Exit.\n";
     breakLine();
   }
 
@@ -51,6 +61,5 @@ struct Print {
   static void markResult(MarkResult markResult) {
     cout << markResult.mark << ": " << markResult.grade << endl;
   }
-
 };
 #endif

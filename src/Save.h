@@ -101,6 +101,19 @@ class Load {
 
     return mark;
   }
+
+  static std::string getMarkLine(std::ifstream& fin) {
+    char ch;
+    std::string currLine;
+    while (fin.get(ch)) {
+      if (ch == ':' || ch == '\n') {
+        break; // Stop when you encounter ':' or '\n'
+      }
+      currLine += ch; // Add the character to the string
+    }
+    return currLine;
+  }
+
 public:
   static ClassList classList() {
     std::string className;
@@ -110,36 +123,44 @@ public:
     ClassList classList;
     std::ifstream fin(filename);
     std::string currLine;
-    fin >> currLine;
-    classList.className = currLine;
-    fin >> currLine >> currLine;
-    std::vector<Student> students;
 
+    std::getline(fin, currLine);
+    classList.className = currLine;
+    fin.ignore(256, '\n');
+    fin.ignore(256, '\n');
+    
+    std::getline(fin, currLine);
+    std::vector<Student> students;
     while (!currLine.empty()) {
       Student student;
       student.firstName = currLine;
-      fin >> currLine;
-      student.lastName = currLine;
-      std::vector<Mark> marks;
-
-      fin.ignore();
       std::getline(fin, currLine);
+      student.lastName = currLine;
+
+      std::vector<Mark> marks;
       while (!currLine.empty()) {
-        Mark mark = readMarkLine(currLine);
-        fin >> currLine;
-        classList.markTemplate.push_back(Mark{
-            mark.name,
-            0, mark.weight});
-        mark.mark = stod(currLine);
-        marks.push_back(mark);
-        fin.ignore();
+        std::string name;
+        double weight;
+        double mark;
+        currLine = getMarkLine(fin);
+        if (currLine.empty())
+          break;
+        name = currLine;
         std::getline(fin, currLine);
+        weight = stod(currLine);
+        std::getline(fin, currLine);
+        mark = stod(currLine);
+        marks.push_back(Mark{name, mark, weight});
       }
       student.marks = marks;
-      std::getline(fin, currLine);
       students.push_back(student);
+      std::getline(fin, currLine);
     }
+
     classList.students = students;
+    for(Mark mark: classList.students[0].marks)
+      classList.markTemplate.push_back(Mark{mark.name, 0, mark.weight});
+
     return classList;
   }
 };
