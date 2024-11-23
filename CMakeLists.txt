@@ -19,15 +19,15 @@ elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
 	endif()
 endif()
 
-#TODO turn testing back on
+
 #find_package(Catch2 3 REQUIRED)
 
 include_directories("./src")
 file (GLOB SOURCES src/*.cpp)
 
-#add_executable(tests "${SORUCES}")
+#add_executable(tests test/test.cpp "${SORUCES}")
 #target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
 add_executable(SIS "${SOURCES}")
-
 target_include_directories(SIS PUBLIC "${PROJECT_BINARY_DIR}")
+

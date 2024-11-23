@@ -1,3 +1,4 @@
+#include <exception>
 #include <iostream>
 #include <stdexcept>
 #include "../SIS.h"
@@ -27,7 +28,7 @@ class MainLoop {
       break;
     case 2:
       // Sort alphabetically
-      this->classList.
+      this->classList.students =
         ClassList::sortStudentsByName(this->classList.students);
       break;
     case 3:
@@ -55,9 +56,13 @@ class MainLoop {
       classList.deleteStudents();
       break;
     case 9:
-      // Change the grading sceheme      
-      this->classList.markTemplate =
-        Mark::getMarkTemplate(this->classList.markTemplate.size());
+      // Change the grading sceheme
+      if (this->classList.markTemplate.empty()) {
+        cout << "No class currently loaded.";
+      } else {
+        this->classList.markTemplate =
+          Mark::updateMarkTemplate(this->classList.markTemplate);
+      }
       break;
     case 10:
       // Save      
@@ -80,14 +85,44 @@ class MainLoop {
       classList.nameClass();
       break;
     case 13:
+      // Create a new class
+      this->classList = ClassList::newClass();
+      break;
+    case 14:
       // Load class      
       this-> classList=Load::classList();
       break;
-    case 14:
+    case 15:
       // Exit      
       return 1;
     default:
       cout << "Didn't recongine input. select a number between 1 and 10";
+    }
+    return 0;
+  }
+
+  int loadClass(int input) {
+    switch (input) {
+    case 1:
+      try {
+        this->classList = ClassList::newClass();
+        return 0;
+      } catch (exception &e) {
+        cout << "Failed to create class.";
+        return -1;
+      }
+      break;
+    case 2:
+      try {
+        this->classList = Load::classList();
+        return 0;
+      } catch (exception &e) {
+        cout << "Failed to load class.";
+        return -1;
+      }
+      break;
+    case 3:
+      return 1;
     }
     return 0;
   }
@@ -118,6 +153,14 @@ public:
       exit = selectTask(input);
     }
     return 0;
+  }
+
+  int introLoop() {
+    int input = 0;
+      Print::introMenu();
+      input = getUserInput();
+      input = loadClass(input);
+    return input;
   }
 };
 #endif

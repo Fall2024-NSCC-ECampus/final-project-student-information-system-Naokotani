@@ -135,6 +135,7 @@ CMakeFiles/SIS.dir/src/ClassList.cpp.o: src/ClassList.cpp \
   /usr/include/c++/14.2.1/clocale \
   /usr/include/c++/14.2.1/cstdio \
   /usr/include/c++/14.2.1/cstdlib \
+  /usr/include/c++/14.2.1/cstring \
   /usr/include/c++/14.2.1/cwchar \
   /usr/include/c++/14.2.1/cwctype \
   /usr/include/c++/14.2.1/debug/assertions.h \
@@ -184,6 +185,8 @@ CMakeFiles/SIS.dir/src/ClassList.cpp.o: src/ClassList.cpp \
   /usr/include/stdc-predef.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/sys/cdefs.h \
   /usr/include/sys/select.h \
   /usr/include/sys/single_threaded.h \
@@ -803,6 +806,10 @@ src/Mark.cpp:
 
 /usr/include/sys/cdefs.h:
 
+/usr/include/strings.h:
+
+/usr/include/string.h:
+
 /usr/include/stdlib.h:
 
 src/main.cpp:
@@ -872,6 +879,8 @@ src/main.cpp:
 /usr/include/c++/14.2.1/cwctype:
 
 /usr/include/c++/14.2.1/cwchar:
+
+/usr/include/c++/14.2.1/cstring:
 
 /usr/include/c++/14.2.1/cstdio:
 

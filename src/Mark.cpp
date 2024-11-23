@@ -63,28 +63,38 @@ vector<Mark> Mark::newMarks(vector<Mark> marks) {
   return marks;
 }
 
+double getMarkDouble() {
+  string s;
+  cin.ignore();
+  cin >> s;
+  do {
+    try{
+      return stod(s);
+    } catch (invalid_argument &e) {
+      cout << "Couln't parse input: " << s << endl;
+      cout << "please re-enter mark\n";
+    }
+  } while(1);
+}
+
+vector<Mark> Mark::updateMarkTemplate(vector<Mark> markTemplate) {
+  for (Mark mark : markTemplate) {
+    cout << "Enter mark for " << mark.name << ": ";
+    mark.weight = getMarkDouble();
+  }
+  return markTemplate;
+}
+
 vector<Mark> Mark::getMarkTemplate(int templateLength) {
   vector<Mark> markTemplate;
   for (int i = 0; i < templateLength; i++) {
-    int valid_input = 0;
-    string s;
-    double weight;
-    string name;
-
-    do {
-      cout << "Enter the assignment name: ";
-      cin >> name;
-      cout << "enter first assignment weight: ";
-      cin >> s;
-      try {
-        weight = stod(s);
-        valid_input = 1;
-        markTemplate.push_back(Mark{name, 0.0, weight});
-      } catch (invalid_argument &e) {
-        cout << "Couln't parse input: " << s << endl;
-        cout << "please re-enter mark\n";
-      }
-    } while(valid_input == 0);
+    Mark mark;
+    cout << "Enter the assignment name: ";
+    cin >> mark.name;
+    cin.ignore();
+    cout << "enter first assignment weight: ";
+    mark.weight = getMarkDouble();
+    markTemplate.push_back(mark);
   }
   return markTemplate;
 }
