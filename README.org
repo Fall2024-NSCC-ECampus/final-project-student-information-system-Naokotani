@@ -1,0 +1,7 @@
+#+title: Student Information System
+
+* Build
+Building the project requires cmake. Run =cmake .= and =cmake --build .= in the root directory.
+
+* Usage
+After building, run the executable =SIS=. This will print an intro menu to load or create a new class. Once the class is created, the main class menu will be printed. Enter a number to run one of the options from the printed menu.
