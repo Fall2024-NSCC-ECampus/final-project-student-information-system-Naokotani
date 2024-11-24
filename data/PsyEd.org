@@ -1,4 +1,4 @@
-* Class: Gym
+* Class: PsyEd
 
 ** Bob Ackerman
 |------------+------+--------|

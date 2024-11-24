@@ -3,6 +3,11 @@
 
 #ifndef CLASSLIST_H
 #define CLASSLIST_H
+/**
+ * struct that proviced the data structure to store information about a class.
+ * This information includes the classes name, the mark template and a vector of
+ * `Student` in the class.
+ */
 struct ClassList {
   std::string className;
   std::vector<Mark> markTemplate;

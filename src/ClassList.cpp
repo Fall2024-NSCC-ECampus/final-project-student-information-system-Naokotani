@@ -14,7 +14,10 @@ using namespace std;
  * Local Structs
  */
 
-struct deleteStudent {
+/**
+ * Used to store a student and its index in a vector.
+ */
+struct FoundStudent {
       size_t index;
       Student student;
 };
@@ -25,7 +28,7 @@ struct deleteStudent {
 
 int getInt();
 int getMarkQuantity();
-int chooseStudent(vector<deleteStudent> students);
+int chooseStudent(vector<FoundStudent> students);
 void printStudentVector(vector<Student> students);
 void printMarkResult(MarkResult markResult);
 string getClassname();
@@ -35,33 +38,49 @@ vector<Mark> getMarkTemplate();
  * ClassList implementations
  */
 
+/**
+ * Prints the students in a classList
+ */
 void ClassList::printStudents() {
   printStudentVector(this->students);
 }
 
+/**
+ * Sorts a vector of students alphabetically by last name and then first name.
+ * @param a vector of stuents.
+ * @return The sorted vector
+ */
 vector<Student> ClassList::sortStudentsByName(vector<Student> s) {
   vector<Student> sortedStudents = s;
   sort(sortedStudents.begin(), sortedStudents.end());
   return sortedStudents;
 }
 
-void ClassList::printStudentsAlphabetic() {
-  vector<Student> s = this->students;
-  printStudentVector(s);
-}
-
+/**
+ * Input a get inputs for a new class.
+ * @return A newly created `ClassList`
+ */
 ClassList ClassList::inputClass() {
   ClassList classList;
   classList.className = getClassname();
   return classList;
 }
 
+/**
+ * Adds a `Student` to the `ClassList`
+ * @return The newly added `Student`
+ */
 Student ClassList::addStudent() {
   Student student = Student::inputStudent(this->markTemplate);
   this->students.push_back(student);
   return student;
 }
 
+/**
+ * Updates the information for a student. Will update either name, marks or both.
+ * @param The last name of the `Student` to be updated
+ * @return the updated `Student`
+ */
 Student ClassList::updateStudentByLastName(string lastName) {
   int studentIndex = findStudentByLastName(lastName);
   Student student = this->students[studentIndex];
@@ -82,7 +101,7 @@ Student ClassList::updateStudentByLastName(string lastName) {
       cout << "Invalid input, please enter 1-3\n";
     }
   }
-
+  
   Student newStudent;
   switch (input) {
   case 1:
@@ -111,29 +130,44 @@ Student ClassList::updateStudentByLastName(string lastName) {
   return newStudent;
 }
 
+/**
+ * Prints the information for a `Student` by their last name.
+ * @param The last name of the `Student` to be printed.
+ */
 void ClassList::printStudentByLastName(string lastName) {
-  Student student = this->students[findStudentByLastName(lastName)];
+  Student student;
+  try {
+    student = this->students[findStudentByLastName(lastName)];
+  } catch (invalid_argument &e) {
+    cout << e.what();
+    return;
+  }
+
   cout << "First Name: " << student.firstName << endl;
   cout << "Last Name: " << student.lastName << endl;
 
   for (Mark m : student.marks) {
-    cout << m.name << ": " << m.mark;
+    cout << m.name << ": " << m.mark << endl;
   }
 }
 
+/**
+ * Finds a `Student` in the `ClassList` by their last name.
+ * @param The last name of the `Student` to find.
+ * @return the index of the student in the students vector.
+ */ 
 int ClassList::findStudentByLastName(string lastName) {
-  vector<deleteStudent> foundStudents = {};
+  vector<FoundStudent> foundStudents = {};
 
   for(size_t i = 0; i < this->students.size(); i++) {
     if (lastName == this->students[i].lastName) {
-      foundStudents.push_back(deleteStudent{i, this->students[i]});
+      foundStudents.push_back(FoundStudent{i, this->students[i]});
     };
   }
 
   int index;
   if (foundStudents.empty()) {
-    cout << "Student not found.";
-    throw(runtime_error("Student not found"));
+    throw(invalid_argument("Student not found"));
   } else if(foundStudents.size() > 1) {
     index = chooseStudent(foundStudents);
   } else {
@@ -142,11 +176,19 @@ int ClassList::findStudentByLastName(string lastName) {
   return index;
 }
 
+/**
+ * Delete a `Student` by their last name.
+ * @param The last name of the `Student` to delete.
+ */ 
 void ClassList::deleteStudentByLastName(string lastName) {
   int index = findStudentByLastName(lastName);
   this->students.erase(this->students.begin()+ index);
 }
 
+/**
+ * Creates a new class.
+ * @return a newly created `ClassList`
+ */
 ClassList ClassList::newClass() {
   ClassList classList;
   classList.nameClass();
@@ -166,6 +208,9 @@ ClassList ClassList::newClass() {
   return classList;
 }
 
+/**
+ * Sets the name for a `ClassList`
+ */ 
 void ClassList::nameClass() {
   string name;
   cout << "Enter new class name: ";
@@ -173,7 +218,11 @@ void ClassList::nameClass() {
   this->className = name;
 }
 
-int chooseStudent(vector<deleteStudent> students) {
+/**
+ * Selects a `Student` from a `vector<Student>`
+ * @param A vector of `foundStduent` to select from.
+ */
+int chooseStudent(vector<FoundStudent> students) {
   cout << "Multiple students with the same last name\n";
   cout << "Which student would you like to delete?\n";
 
@@ -194,6 +243,9 @@ int chooseStudent(vector<deleteStudent> students) {
   return index;
 }
 
+/**
+ * Gets the number of `Mark` to put in a vector of `Mark` from the user.
+ */
 int getMarkQuantity() {
   int mark_quantity;
   cout << "Number of test and assignemnts: ";
@@ -201,9 +253,14 @@ int getMarkQuantity() {
   return mark_quantity;
 }
 
-vector<Mark> getMarkVector(int mark_quantity) {
+/**
+ * Creates a vector of `Mark`
+ * @param The number of `Mark` to put in the vector.
+ * @return the newly created vector of `Mark`
+ */ 
+vector<Mark> getMarkVector(int markQuantity) {
   vector<Mark> mark_template;
-  for (int i = 0; i < mark_quantity; i++) {
+  for (int i = 0; i < markQuantity; i++) {
       int valid_input = 0;
       string s;
       double weight;
@@ -226,11 +283,19 @@ vector<Mark> getMarkVector(int mark_quantity) {
   return mark_template;
 }
 
+/**
+ * Creates a mark template with the name and weight of a mark.
+ * @return a newly created vector of `Mark`.
+ */
 vector<Mark> getMarkTemplate() {
   int markQuantity = getMarkQuantity();
   return getMarkVector(markQuantity);
 }
 
+/**
+ * Gets the name of a class from the user.
+ * @return The new class name.
+ */
 string getClassname() {
   string s;
   cout << "Classname: ";
@@ -238,6 +303,10 @@ string getClassname() {
   return s;
 }
 
+/**
+ * Get an integer from the user.
+ * @return the integer input by the user.
+ */ 
 int getInt() {
   string s;
   do {
@@ -250,11 +319,19 @@ int getInt() {
   } while (1);
 }
 
+/**
+ * Prints a `MarkResult` which is a graded mark.
+ * @param the `MarkResult` to be printed.
+ */
 void printMarkResult(MarkResult markResult) {
   cout << "Final mark percentage: " << markResult.mark << endl;
   cout << "Final letter grade: " << markResult.grade << endl;
 }
 
+/**
+ * Prints a vector of `Student`.
+ * @param The vector of `Student` to print.
+ */
 void printStudentVector(vector<Student> students) {
   for (Student &s : students) {
     Print::breakLine();
