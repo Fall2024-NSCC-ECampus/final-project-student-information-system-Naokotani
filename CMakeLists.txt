@@ -20,13 +20,13 @@ elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
 endif()
 
 
-#find_package(Catch2 3 REQUIRED)
+find_package(Catch2 3 REQUIRED)
 
 include_directories("./src")
 file (GLOB SOURCES src/*.cpp)
 
-#add_executable(tests test/test.cpp "${SORUCES}")
-#target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+add_executable(tests test/test.cpp ./src/ClassList.cpp ./src/Student.cpp ./src/Mark.cpp)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
 add_executable(SIS "${SOURCES}")
 target_include_directories(SIS PUBLIC "${PROJECT_BINARY_DIR}")

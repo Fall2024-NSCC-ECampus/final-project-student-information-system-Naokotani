@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named tests
+
+# Build rule for target.
+tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests
+.PHONY : tests
+
+# fast build rule for target.
+tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
+.PHONY : tests/fast
+
+#=============================================================================
 # Target rules for targets named SIS
 
 # Build rule for target.
@@ -134,6 +147,7 @@ src/ClassList.o: src/ClassList.cpp.o
 
 # target to build an object file
 src/ClassList.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/ClassList.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/ClassList.cpp.o
 .PHONY : src/ClassList.cpp.o
 
@@ -142,6 +156,7 @@ src/ClassList.i: src/ClassList.cpp.i
 
 # target to preprocess a source file
 src/ClassList.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/ClassList.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/ClassList.cpp.i
 .PHONY : src/ClassList.cpp.i
 
@@ -150,6 +165,7 @@ src/ClassList.s: src/ClassList.cpp.s
 
 # target to generate assembly for a file
 src/ClassList.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/ClassList.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/ClassList.cpp.s
 .PHONY : src/ClassList.cpp.s
 
@@ -158,6 +174,7 @@ src/Mark.o: src/Mark.cpp.o
 
 # target to build an object file
 src/Mark.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Mark.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/Mark.cpp.o
 .PHONY : src/Mark.cpp.o
 
@@ -166,6 +183,7 @@ src/Mark.i: src/Mark.cpp.i
 
 # target to preprocess a source file
 src/Mark.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Mark.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/Mark.cpp.i
 .PHONY : src/Mark.cpp.i
 
@@ -174,6 +192,7 @@ src/Mark.s: src/Mark.cpp.s
 
 # target to generate assembly for a file
 src/Mark.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Mark.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/Mark.cpp.s
 .PHONY : src/Mark.cpp.s
 
@@ -182,6 +201,7 @@ src/Student.o: src/Student.cpp.o
 
 # target to build an object file
 src/Student.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Student.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/Student.cpp.o
 .PHONY : src/Student.cpp.o
 
@@ -190,6 +210,7 @@ src/Student.i: src/Student.cpp.i
 
 # target to preprocess a source file
 src/Student.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Student.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/Student.cpp.i
 .PHONY : src/Student.cpp.i
 
@@ -198,6 +219,7 @@ src/Student.s: src/Student.cpp.s
 
 # target to generate assembly for a file
 src/Student.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Student.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/Student.cpp.s
 .PHONY : src/Student.cpp.s
 
@@ -225,6 +247,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SIS.dir/build.make CMakeFiles/SIS.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+test/test.o: test/test.cpp.o
+.PHONY : test/test.o
+
+# target to build an object file
+test/test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/test.cpp.o
+.PHONY : test/test.cpp.o
+
+test/test.i: test/test.cpp.i
+.PHONY : test/test.i
+
+# target to preprocess a source file
+test/test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/test.cpp.i
+.PHONY : test/test.cpp.i
+
+test/test.s: test/test.cpp.s
+.PHONY : test/test.s
+
+# target to generate assembly for a file
+test/test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/test.cpp.s
+.PHONY : test/test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -234,6 +280,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... SIS"
+	@echo "... tests"
 	@echo "... src/ClassList.o"
 	@echo "... src/ClassList.i"
 	@echo "... src/ClassList.s"
@@ -246,6 +293,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... test/test.o"
+	@echo "... test/test.i"
+	@echo "... test/test.s"
 .PHONY : help
 
 

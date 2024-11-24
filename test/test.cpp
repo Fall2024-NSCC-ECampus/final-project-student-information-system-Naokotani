@@ -1,5 +1,3 @@
-#include "../src/ClassList.h"
-#include "../src/Student.h"
 #include "tests.h"
 #include <catch2/catch_test_macros.hpp>
 #include <climits>
@@ -8,7 +6,7 @@ using namespace std;
 
 char gradeCalculation(vector<Mark> marks) {
   Student student{"Chris", "Hughes", marks};
-  char grade = student.calculate_grade().grade;
+  char grade = student.calculateGrade().grade;
   return grade;
 }
 
@@ -52,10 +50,10 @@ vector<Student> createStudentVector() {
          {"Eve", "Williams",{Mark{"Test",80, 0.7}, Mark{"Test",75, 0.3}}},
          {"Frank", "Miller",{Mark{"Test",65, 0.5},Mark{"Test",70, 0.5}}},
          {"Grace", "Wilson",{Mark{"Test",90, 0.6},Mark{"Test",80, 0.4}}},
-         {"Hannah", "MooreMark",{Mark {"Test",92, 0.5},Mark{"Test",85, 0.5}}},
-         {"Jack", "TaylorMark",{Mark{"Test",78, 0.5},Mark{"Test",85, 0.5}}},
-         {"Jack", "TaylorMark",{Mark{"Test",78, 0.5},Mark{"Test",85, 0.5}}},
-         {"Zoe", "AndersonMark",{Mark{"Test",100, 0.5},Mark{"Test",95, 0.5}}}
+         {"Hannah", "Moore",{Mark {"Test",92, 0.5},Mark{"Test",85, 0.5}}},
+         {"Jack", "Taylor",{Mark{"Test",78, 0.5},Mark{"Test",85, 0.5}}},
+         {"Jack", "Taylor",{Mark{"Test",78, 0.5},Mark{"Test",85, 0.5}}},
+         {"Zoe", "Anderson",{Mark{"Test",100, 0.5},Mark{"Test",95, 0.5}}}
     };
 }
 
@@ -68,7 +66,7 @@ ClassList createClass() {
 
 TEST_CASE("Sort student names alphabetically", "sorting") {
   vector<Student> students = createStudentVector();
-  vector<Student> sorted = sortStudentsByName(students);
+  vector<Student> sorted = ClassList::sortStudentsByName(students);
 
   SECTION("First name") { REQUIRE(sorted[0].lastName == "Anderson"); }
 

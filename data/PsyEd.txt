@@ -1,4 +1,4 @@
-Gym
+PsyEd
 ***********
 
 Bob
@@ -10,14 +10,14 @@ Midterm 2: 25
 Final: 50
 66
 
-Chris
-Hughes
+Alicia
+Doe
 Midterm 1: 25
-55
+77
 Midterm 2: 25
-55
+77
 Final: 50
-55
+77
 
 Bob
 Hickerman
@@ -27,5 +27,14 @@ Midterm 2: 25
 44
 Final: 50
 44
+
+Chris
+Hughes
+Midterm 1: 25
+88
+Midterm 2: 25
+89
+Final: 50
+100
 
 

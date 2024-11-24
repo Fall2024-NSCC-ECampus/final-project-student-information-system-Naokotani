@@ -1,6 +1,5 @@
 #include <cstddef>
 #include <iostream>
-#include <stdexcept>
 #include "Student.h"
 #include "Print.h"
 #include "ClassList.h"
@@ -19,6 +18,11 @@ char getLetterGrade(double);
  * Student implementations
  */
 
+/**
+ * Gets user input and creates a new `Student`.
+ * @param The mark template to detemine the mark names and their number.
+ * @return The newly created `Student`.
+ */ 
 Student Student::inputStudent(vector<Mark> markTemplate) {
   Student student;
   cout << "First name: ";
@@ -29,20 +33,19 @@ Student Student::inputStudent(vector<Mark> markTemplate) {
   for (size_t i = 0; i < markTemplate.size(); i++) {
     string s;
     cout << markTemplate[i].name << ": ";
-    cin >> s;
-
     double mark;
-    try {
-      mark = stod(s);
-    } catch (invalid_argument &e) {
-      throw("Invalid mark input. must be a number");
-    }
+    mark = Mark::getMarkDouble();
 
     student.marks.push_back(Mark{markTemplate[i].name, mark, markTemplate[i].weight});
   }
   return student;
 }
 
+/**
+ * Creates a new name for a `Student`
+ * @param The `Student` to be updated.
+ * @return the `Stduent` with updated names.
+ */ 
 Student Student::newName(Student student) {
   cout << "First name: ";
   cin >> student.firstName;
@@ -51,7 +54,11 @@ Student Student::newName(Student student) {
   return student;
 }
 
-MarkResult Student::calculate_grade() {
+/**
+ * Calculates the grade average and letter grade of a student.
+ * @return The `MarkResult` of the graded student.
+ */
+MarkResult Student::calculateGrade() {
   const vector<double> weighted_marks = applyWeight(this->marks);
   const double sum = sumMark(weighted_marks);
   return MarkResult {
@@ -60,9 +67,13 @@ MarkResult Student::calculate_grade() {
   };
 }
 
+/**
+ * Prints the grades for all students.
+ * @param vector of `Student` to print the marks for.
+ */ 
 void Student::printAllGrades(std::vector<Student> students) {
   for (Student s : students) {
-    MarkResult markResult = s.calculate_grade();
+    MarkResult markResult = s.calculateGrade();
     Print::names(s);
     Print::marks(s.marks);
     Print::markResult(markResult);
@@ -70,6 +81,11 @@ void Student::printAllGrades(std::vector<Student> students) {
   }
 }
 
+/**
+ * Makes a lowercase string
+ * @param The string to lowercase
+ * @return a string in all lower case.
+ */ 
 string Student::lowerCase(std::string s) {
   string lowerString = s;
   for (char& c : lowerString) {
@@ -78,6 +94,10 @@ string Student::lowerCase(std::string s) {
   return lowerString;
 }
 
+/**
+ * Prints a students marks and names.
+ * @param The student to print.
+ */ 
 void Student::printStudent(Student student) {
   Print::names(student);
   Print::marks(student.marks);
@@ -97,6 +117,11 @@ vector<double> applyWeight(const vector<Mark> marks) {
   return weighted_marks;
 }
 
+/**
+ * Sums all the marks in vector of `Mark`
+ * @param The `Mark` vector to be summed.
+ * @return A sum of all `Mark` in the vector.
+ */ 
 double sumMark(const vector<double> marks) {
   double sum = 0;
   for (size_t i = 0; i < marks.size(); i++) {
@@ -105,6 +130,11 @@ double sumMark(const vector<double> marks) {
   return sum;
 }
 
+/**
+ * Determines the letter grade based on a summed `Mark` vector
+ * @param The sum of marks.
+ * @return The letter grade based on the students average weighted mark.
+ */ 
 char getLetterGrade(double mark) {
   char letter_grade;
   if (mark >= 90.0) {
@@ -120,3 +150,4 @@ char getLetterGrade(double mark) {
   }
   return letter_grade;
 }
+

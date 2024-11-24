@@ -9,16 +9,21 @@
 
 #ifndef SAVE_H
 #define SAVE_H
+/**
+ * Class for saving org and txt files.
+ */ 
 class Save {
-
   public:
   static std::string breakLine() { return "\n***********\n"; }
-  static std::string lineBreak() { return "-----------\n"; }
+/**
+ * Saves a `ClassList`
+ * @param The `ClassList` to be saved.
+ */ 
   static void classList(ClassList classList) {
-		if(classList.className == "") {
+    if(classList.className == "") {
       std::cout << "Class not named, please name (option 11)\n";
       return;
-		}
+    }
 
     std:: string filename = "data/" + classList.className + ".txt";
     std::cout << "Saving files to: " << filename << std::endl;
@@ -45,6 +50,10 @@ class Save {
     std::cout << "File saved.\n";
   }
 
+/**
+ * Saves the current `ClassList` as an org file.
+ * @param The `ClassList` to be saved.
+ */ 
   static void orgClassList(ClassList classList) {
     if(classList.className == "") {
       std::cout << "Class not named, please name (option 11)\n";
@@ -78,43 +87,31 @@ class Save {
   }
 };
 
+/**
+ * Functions for loading a `ClassList`.
+ */ 
 class Load {
-
-  static std::string trim(const std::string& str) {
-    auto start = std::find_if_not(str.begin(), str.end(), ::isspace);
-    auto end = std::find_if_not(str.rbegin(), str.rend(), ::isspace).base();
-    return (start < end) ? std::string(start, end) : "";
-  }
-
-  static Mark readMarkLine(std::string markLine) {
-    Mark mark;
-    size_t colonPos = markLine.find(':');
-
-    if(colonPos != std::string::npos) {
-        std::string part1 = markLine.substr(0, colonPos);
-        std::string part2 = markLine.substr(colonPos + 1);
-        mark.name = trim(part1);
-        mark.weight = stod(trim(part2));
-    } else {
-      throw(std::runtime_error("Coult not parse mark string, no colon."));
-    }
-
-    return mark;
-  }
-
+/**
+ * Reads the first line of a `mark` from a txt file
+ * @param The file pointer to read the `Mark` from 
+ */ 
   static std::string getMarkLine(std::ifstream& fin) {
     char ch;
     std::string currLine;
     while (fin.get(ch)) {
       if (ch == ':' || ch == '\n') {
-        break; // Stop when you encounter ':' or '\n'
+        break; 
       }
-      currLine += ch; // Add the character to the string
+      currLine += ch;
     }
     return currLine;
   }
 
 public:
+/**
+ * Loads a `ClassList from a txt file.
+ * @return The loaded `ClassList`.
+ */ 
   static ClassList classList() {
     std::string className;
     std::cout << "Enter class name: ";
@@ -128,7 +125,7 @@ public:
     classList.className = currLine;
     fin.ignore(256, '\n');
     fin.ignore(256, '\n');
-    
+                             
     std::getline(fin, currLine);
     std::vector<Student> students;
     while (!currLine.empty()) {
@@ -158,9 +155,11 @@ public:
     }
 
     classList.students = students;
-    for(Mark mark: classList.students[0].marks)
+    classList.markTemplate = {};
+    for (Mark mark : classList.students[0].marks)
       classList.markTemplate.push_back(Mark{mark.name, 0, mark.weight});
 
+      
     return classList;
   }
 };

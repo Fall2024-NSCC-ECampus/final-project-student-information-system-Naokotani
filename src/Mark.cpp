@@ -6,7 +6,11 @@
 
 using namespace std;
 
-int getValidInput() {
+/**
+ * Gets integer input from the user.
+ * @return the integer from user input
+ */
+int getIntInput() {
   int validInput = 0;
   string s;
   int input;
@@ -23,6 +27,11 @@ int getValidInput() {
   return input;
 }
 
+/**
+ * Select a `Mark` to update and then update it from a vector of `Mark`
+ * @param The vector of `Mark` that will be updated.
+ * @return the newly updated `Mark` vector.
+ */
 vector<Mark> Mark::newMarks(vector<Mark> marks) {
   cout << "Which mark to update?\n";
 
@@ -45,13 +54,13 @@ vector<Mark> Mark::newMarks(vector<Mark> marks) {
       double mark;
       string s;
       while (!validMark) {
-        cout << "Enter a mark";
+        cout << "Enter a mark: ";
         cin >> s;
         try {
           mark = stod(s);
           validMark = 1;
         } catch (invalid_argument &e) {
-          cout << "Invalid mark. Enter number between 0 and 100";
+          cout << "Invalid mark. Enter number between 0 and 100\n";
         }
         marks[input - 1].mark = mark;
       }
@@ -62,12 +71,15 @@ vector<Mark> Mark::newMarks(vector<Mark> marks) {
   }
   return marks;
 }
-
-double getMarkDouble() {
+/**
+ * Gets a double for a mark value.
+ * @return a double from user input.
+ */ 
+double Mark::getMarkDouble() {
   string s;
   cin.ignore();
-  cin >> s;
   do {
+    cin >> s;
     try{
       return stod(s);
     } catch (invalid_argument &e) {
@@ -77,14 +89,24 @@ double getMarkDouble() {
   } while(1);
 }
 
+/**
+ * Updates the mark template with new values
+ * @param the old template to be updated.
+ * @return the newly updated template.
+ */ 
 vector<Mark> Mark::updateMarkTemplate(vector<Mark> markTemplate) {
-  for (Mark mark : markTemplate) {
-    cout << "Enter mark for " << mark.name << ": ";
-    mark.weight = getMarkDouble();
+  for (size_t i = 0; i < markTemplate.size(); i++) {
+    cout << "Enter mark for " << markTemplate[i].name << ": ";
+    markTemplate[i].weight = getMarkDouble();
   }
   return markTemplate;
 }
 
+/**
+ * Creates an entirely new mark template.
+ * @param The length of the template to be created
+ * @return The newly created mark template.
+ */ 
 vector<Mark> Mark::getMarkTemplate(int templateLength) {
   vector<Mark> markTemplate;
   for (int i = 0; i < templateLength; i++) {
@@ -99,10 +121,14 @@ vector<Mark> Mark::getMarkTemplate(int templateLength) {
   return markTemplate;
 }
 
+/**
+ * Creates a new mark template, gets user input to determine its length.
+ * @return The new mark template from `getMarkTemplate()'
+ */ 
 vector<Mark> Mark::newMarkTemplate() {
   string s;
   int templateLength;
   cout << "How many marks in the template?\n";
-  templateLength = getValidInput();
+  templateLength = getIntInput();
   return Mark::getMarkTemplate(templateLength);
 }
