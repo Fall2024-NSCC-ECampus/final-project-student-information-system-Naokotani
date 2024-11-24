@@ -13,3 +13,4 @@ CMakeUserPresets.json
 SIS
 .cache/
 .gdb_history
+tests
